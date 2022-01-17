@@ -35,8 +35,8 @@ class ApplyMask {
 
 	/**
 	 * @description Applies the Phone mask to a string. (00)00000-0000
-	 * @param {String} unformatedValue An unformated string containing the full or partial CPF
-	 * @returns The formatted CPF
+	 * @param {String} unformatedValue An unformated string containing the full or partial Phone number
+	 * @returns The formatted Phone
 	 */
 	static toPhone = (unformatedValue) => {
 		const extractedNumbers = this.numbersOnly(unformatedValue);
@@ -48,8 +48,8 @@ class ApplyMask {
 
 	/**
 	 * @description Applies the Phone mask to a string. 00000-000
-	 * @param {String} unformatedValue An unformated string containing the full or partial CPF
-	 * @returns The formatted CPF
+	 * @param {String} unformatedValue An unformated string containing the full or partial CEP
+	 * @returns The formatted CEP
 	 */
 	static toCEP = (unformatedValue) => {
 		const extractedNumbers = this.numbersOnly(unformatedValue);
@@ -145,4 +145,6 @@ class CustomMask {
 	}
 }
 
+/*
 window.addEventListener('load', (e) => new CustomMask());
+*/
