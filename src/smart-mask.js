@@ -144,7 +144,3 @@ class CustomMask {
 		}
 	}
 }
-
-/*
-window.addEventListener('load', (e) => new CustomMask());
-*/
