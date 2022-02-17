@@ -136,11 +136,22 @@ class CustomMask {
 		setElementWithMask(elementStringContainer);
 		element.addEventListener("change", setElementWithMask);
 		element.addEventListener("keydown", setElementWithMask);
-		element.addEventListener("keyup", setElementWithMask);
+		element.addEventListener("keyup", setInputElementMask);
 
 		function setElementWithMask() {
 			const elementValue = element[elementStringContainer]
 			element[elementStringContainer] = maskFunction(elementValue);
+		}
+
+		function setInputElementMask(event){
+			const target = event.target
+			const startPosition = target.selectionStart+ 1;
+			const isChar = /^[a-z0-9!@#¨$%^&*)(+=._-]+$/i.test(event.key);
+			debugger;
+			setElementWithMask();
+			
+			target.selectionStart = startPosition;
+			target.selectionEnd = startPosition;
 		}
 	}
 }
