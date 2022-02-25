@@ -138,16 +138,21 @@ class CustomMask {
 		element.addEventListener("keydown", setElementWithMask);
 		element.addEventListener("keyup", setInputElementMask);
 
-		function setElementWithMask() {
+		/**
+		 * @description Helper Function to set element with a mask
+		 */
+		setElementWithMask = () => {
 			const elementValue = element[elementStringContainer]
 			element[elementStringContainer] = maskFunction(elementValue);
 		}
 
-		function setInputElementMask(event){
+		/**
+		 * @description Helper function event to set input element and keep cursor
+		 */
+		setInputElementMask = (event) => {
 			const target = event.target
-			const startPosition = target.selectionStart+ 1;
-			const isChar = /^[a-z0-9!@#¨$%^&*)(+=._-]+$/i.test(event.key);
-			debugger;
+			const startPosition = target.selectionStart+ (event.key.length == 1 ? 1 : 0);
+			
 			setElementWithMask();
 			
 			target.selectionStart = startPosition;
