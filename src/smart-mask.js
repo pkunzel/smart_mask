@@ -123,7 +123,7 @@ class CustomMask {
 		"date": (element) => this.applyMaskingEvents(element, ApplyMask.toDate),
 		"numbers": (element) => this.applyMaskingEvents(element, ApplyMask.numbersOnly),
 		"characters": (element) => this.applyMaskingEvents(element, ApplyMask.charactersOnly),
-		"non-special-characters": (element) => this.applyMaskingEvents(element, ApplyMask.charactersOnly),
+		"non-special-characters": (element) => this.applyMaskingEvents(element, ApplyMask.charactersOnly)
 	};
 
 	/**
@@ -132,16 +132,10 @@ class CustomMask {
 	 * @param {Function} maskFunction The masking function
 	 */
 	applyMaskingEvents(element, maskFunction) {
-		const elementStringContainer = element.value != undefined ? "value" : "textcontent";
-		setElementWithMask(elementStringContainer);
-		element.addEventListener("change", setElementWithMask);
-		element.addEventListener("keydown", setElementWithMask);
-		element.addEventListener("keyup", setInputElementMask);
-
 		/**
 		 * @description Helper Function to set element with a mask
 		 */
-		setElementWithMask = () => {
+		 const setElementWithMask = () => {
 			const elementValue = element[elementStringContainer]
 			element[elementStringContainer] = maskFunction(elementValue);
 		}
@@ -149,7 +143,7 @@ class CustomMask {
 		/**
 		 * @description Helper function event to set input element and keep cursor
 		 */
-		setInputElementMask = (event) => {
+		const setInputElementMask = (event) => {
 			const target = event.target
 			const startPosition = target.selectionStart+ (event.key.length == 1 ? 1 : 0);
 			
@@ -158,5 +152,11 @@ class CustomMask {
 			target.selectionStart = startPosition;
 			target.selectionEnd = startPosition;
 		}
+
+		const elementStringContainer = element.value != undefined ? "value" : "textcontent";
+		setElementWithMask(elementStringContainer);
+		element.addEventListener("change", setElementWithMask);
+		element.addEventListener("keydown", setElementWithMask);
+		element.addEventListener("keyup", setInputElementMask);
 	}
 }
